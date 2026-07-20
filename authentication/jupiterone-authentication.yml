@@ -1,0 +1,49 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.jupiterone.io/api/authentication
+docs: https://docs.jupiterone.io/api/authentication
+summary:
+  types:
+  - http
+  http_schemes:
+  - bearer
+  oauth2: false
+  additional_required_headers:
+  - JupiterOne-Account
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: >-
+    Every request sends Authorization: Bearer <API_KEY>. The token is a JupiterOne
+    API key created in the account. Wildcards are not supported in tokens.
+  applies_to: https://graphql.us.jupiterone.io/ and https://api.us.jupiterone.io/
+- name: accountHeader
+  type: apiKey
+  in: header
+  parameter: JupiterOne-Account
+  description: >-
+    The JupiterOne account id must accompany every request. Found under Settings >
+    Account Management (apps.us.jupiterone.io/settings/account-management).
+key_types:
+- name: Account-level API key
+  description: >-
+    Created via the CreateToken GraphQL mutation or the dashboard (Settings >
+    Account Management, Administrator permission required). Governed by a JSON
+    permission policy with effect (ALLOW/DENY), actions, and resources; conditions
+    such as stringEquals can constrain query:ReadGraphData.
+- name: Integration API key
+  description: >-
+    Scoped to synchronizing data within a single integration; cannot read the graph
+    or perform other system actions.
+regions:
+  us:
+    graphql: https://graphql.us.jupiterone.io
+    rest: https://api.us.jupiterone.io
+  eu:
+    graphql: https://graphql.eu.jupiterone.io
+    rest: https://api.eu.jupiterone.io
+notes: >-
+  No OAuth 2.0 or OpenID Connect flow is documented; authentication is Bearer API
+  key plus the JupiterOne-Account header. Permission policies provide fine-grained,
+  resource/action-scoped authorization rather than OAuth scopes.
