@@ -1,0 +1,36 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.jupiterone.com/compliance
+docs: https://www.jupiterone.com/compliance
+standards:
+- id: oauth2
+  conforms: false
+  evidence: Authentication is Bearer API key + JupiterOne-Account header; no OAuth2 flow documented.
+- id: oidc
+  conforms: false
+- id: graphql
+  conforms: true
+  evidence: Primary API is a GraphQL API at graphql.us.jupiterone.io with a documented schema and J1QL.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors follow GraphQL errors[] semantics rather than application/problem+json.
+- id: cursor-pagination
+  conforms: true
+  evidence: J1QL/GraphQL queries return cursors for paging.
+compliance_programs:
+- id: soc2-type2
+  conforms: true
+  evidence: JupiterOne completed SOC 2 Type 2 (jupiterone.com/blog/jupiterone-completes-soc-2-type-2).
+- id: iso-27001
+  conforms: true
+  evidence: ISO/IEC 27001:2022 certified per compliance page.
+- id: csa-star
+  conforms: true
+  evidence: CSA STAR listed on compliance page.
+- id: pci-dss
+  conforms: true
+  evidence: PCI DSS listed on compliance page.
+notes: >-
+  Standards[] are derived/searched cross-cutting conformance assertions.
+  compliance_programs[] are published third-party certifications; these back the
+  common[] Compliance pointer at https://www.jupiterone.com/compliance.

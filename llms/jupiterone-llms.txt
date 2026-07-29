@@ -1,0 +1,528 @@
+# JupiterOne Documentation
+
+> JupiterOne is a security and asset intelligence platform. This documentation covers the platform, API references, J1QL, the data model, and integrations.
+
+- [JupiterOne Documentation](/index.md): JupiterOne provides continuous monitoring to surface problems impacting critical assets and infrastructure.
+
+## api
+
+- [Alert rules API](/api/alert-rules.md): GraphQL API for managing JupiterOne alert rules, plus the full reference for the rule definition language — properties, operations, actions, and templating.
+- [Authentication](/api/authentication.md): Learn how to securely authenticate with JupiterOne using API credentials. Our step-by-step guide covers creating and managing API keys for easy integration.
+- [CROSS_SCOPE sync mode](/api/sync-jobs/cross-scope.md): Create relationships between entities that live in different scopes (different integrations or sources).
+- [DIFF sync mode](/api/sync-jobs/diff.md): Full-replacement sync mode. Use DIFF when your upload is the source of truth for everything in the scope.
+- [Entity and relationship queries](/api/entity-relationship-queries.md): Explore querying the JupiterOne graph for entities and relationships though GraphQL API queries.
+- [Entity mutations](/api/entity-mutations.md): Explore the available GraphQL mutations for JupiterOne's entities.
+- [IAM API](/api/iam-operations.md): Work with and manage IAM operations through JupiterOne's API.
+- [Integrations API](/api/integrations-operations.md): Learn the available operations within the JupiterOne GraphQL API for working with integrations.
+- [JupiterOne Python SDK](/api/python-client.md): Install and use the JupiterOne Python SDK to query and manage entities, relationships, and other resources through the JupiterOne API.
+- [Node.js client and CLI](/api/nodejs-client.md): Leverage JupiterOne's Node.js client and CLI to easily upload your own data to your JupiterOne workspace.
+- [OVERRIDE sync mode](/api/sync-jobs/override.md): Pin custom property values onto entities owned by a managed integration so they survive future integration syncs.
+- [Overview](/api/sync-jobs/overview.md): How sync jobs move data into JupiterOne, the four sync modes, and how to choose between them.
+- [PATCH sync mode](/api/sync-jobs/patch.md): Partial-update sync mode. Use PATCH to update properties on existing entities without creating or deleting anything.
+- [Questions API](/api/questions-operations.md): Explore queries within JupiterOne's GraphQL API relating to questions.
+- [Rate limiting](/api/rate-limiting.md): Learn about JupiterOne's GraphQL API rate limiting to ensure you stay within usage limits and avoid service disruptions.
+- [Relationship mutations](/api/relationship-mutations.md): Explore the available GraphQL mutations for JupiterOne Graph relationships.
+- [Sync jobs API reference](/api/sync-jobs/api-reference.md): REST endpoints, payload shapes, validation rules, and error responses for the JupiterOne sync jobs API.
+- [Validate Queries](/api/validate-optimize-queries.md): Use the validate j1ql endpoint to validate J1QL queries.
+
+## data-model
+
+- [AccessKey](/data-model/schemas/AccessKey.md): A key used to grant access, such as ssh-key, access-key, api-key/token, mfa-token/device, etc.
+- [AccessPolicy](/data-model/schemas/AccessPolicy.md): A policy for access control assigned to a Host, Role, User, UserGroup, or Service.
+- [AccessRole](/data-model/schemas/AccessRole.md): An access control role mapped to a Principal (e.g. user, group, or service).
+- [Account](/data-model/schemas/Account.md): An organizational account for a service or a set of services (e.g. AWS, Okta, Bitbucket Team, Google G-Suite account, Apple Developer Account). Each Account should be connected to a Service.
+- [Alert](/data-model/schemas/Alert.md): A notice of any unusual or dangerous circumstance that is sent to responsible parties for the purpose of triggering action.
+- [Application](/data-model/schemas/Application.md): A software product or application.
+- [ApplicationEndpoint](/data-model/schemas/ApplicationEndpoint.md): An application endpoint is a program interface that either initiates or receives a request, such as an API.
+- [Assessment](/data-model/schemas/Assessment.md): An object to represent an assessment, including both compliance assessment such as a HIPAA Risk Assessment or a technical assessment such as a Penetration Testing. Each assessment should have findings (e.g. Vulnerability or Risk) associated.
+- [Attacker](/data-model/schemas/Attacker.md): An attacker or threat actor.
+- [Backup](/data-model/schemas/Backup.md): A specific repository or data store containing backup data.
+- [Certificate](/data-model/schemas/Certificate.md): A digital Certificate such as an SSL or S/MIME certificate.
+- [Channel](/data-model/schemas/Channel.md): A communication channel, such as a Slack channel or AWS SNS topic.
+- [Cluster](/data-model/schemas/Cluster.md): A cluster of compute or database resources/workloads.
+- [CodeCommit](/data-model/schemas/CodeCommit.md): A code commit to a repo. The commit id is captured in the _id property of the Entity.
+- [CodeDeploy](/data-model/schemas/CodeDeploy.md): A code deploy job.
+- [CodeModule](/data-model/schemas/CodeModule.md): A software module. Such as an npm_module or java_library.
+- [CodeRepo](/data-model/schemas/CodeRepo.md): A source code repository. A CodeRepo is also a DataRepository therefore should carry all the required properties of DataRepository.
+- [CodeReview](/data-model/schemas/CodeReview.md): A code review record.
+- [Configuration](/data-model/schemas/Configuration.md): A Configuration contains definitions that describe a resource such as a Task, Deployment or Workload. For example, an `aws_ecs_task_definition` is a `Configuration`.
+- [Container](/data-model/schemas/Container.md): A standard unit of software that packages up code and all its dependencies and configurations.
+- [Control](/data-model/schemas/Control.md): A security or IT Control. A control can be implemented by a vendor/service, a person/team, a program/process, an automation code/script/configuration, or a system/host/device. Therefore, this is most likely an additional Class applied to a Service (e.g. Okta SSO), a Device (e.g. a physical firewall), or a HostAgent (e.g. Carbon Black CbDefense Agent). Controls are mapped to security policy procedures and compliance standards/requirements.
+- [ControlPolicy](/data-model/schemas/ControlPolicy.md): An technical or operational policy with rules that govern (or enforce, evaluate, monitor) a security control.
+- [CryptoKey](/data-model/schemas/CryptoKey.md): A key used to perform cryptographic functions, such as an encryption key.
+- [Database](/data-model/schemas/Database.md): A database cluster/instance.
+- [DataCollection](/data-model/schemas/DataCollection.md): An individual collection of data. The collection may exist in various formats, such as a table (e.g. a MySQL table). The exact data type is described in the _type property of the Entity.
+- [DataObject](/data-model/schemas/DataObject.md): An individual data object, such as an aws-s3-object, sharepoint-document, source-code, or a file (on disk). The exact data type is described in the _type property of the Entity.
+- [DataStore](/data-model/schemas/DataStore.md): A virtual repository where data is stored, such as aws-s3-bucket, aws-rds-cluster, aws-dynamodb-table, bitbucket-repo, sharepoint-site, docker-registry. The exact type is described in the _type property of the Entity.
+- [Deployment](/data-model/schemas/Deployment.md): A deployment of code, application, infrastructure or service. For example, a Kubernetes deployment. An auto scaling group is also considered a deployment.
+- [Device](/data-model/schemas/Device.md): A physical device or media, such as a server, laptop, workstation, smartphone, tablet, router, firewall, switch, wifi-access-point, usb-drive, etc. The exact data type is described in the _type property of the Entity.
+- [Directory](/data-model/schemas/Directory.md): Directory, such as LDAP or Active Directory.
+- [Disk](/data-model/schemas/Disk.md): A disk storage device such as an AWS EBS volume
+- [Document](/data-model/schemas/Document.md): A document or data object.
+- [Domain](/data-model/schemas/Domain.md): An internet domain.
+- [DomainRecord](/data-model/schemas/DomainRecord.md): The DNS Record of a Domain Zone.
+- [DomainZone](/data-model/schemas/DomainZone.md): The DNS Zone of an Internet Domain.
+- [Entity](/data-model/schemas/Entity.md): A node in the graph database that represents an Entity. This reference schema defines common shared properties among most Entities.
+- [Entity ingestion labels](/data-model/entity-ingestion-labels.md): Learn about JupiterOne's entity ingestion labels. Filter and query using the source property, and view examples for label usage when querying.
+- [Entity property normalization](/data-model/entity-property-normalization.md): Describes how entity properties are normalized
+- [Entity relationship metadata](/data-model/entity-relationship-metadata.md): Explore the JupiterOne data model's entity relationship metadata to better understand your digit asset security posture.
+- [Finding](/data-model/schemas/Finding.md): A security finding, which may be a vulnerability or just an informative issue. A single finding may impact one or more resources. The `IMPACTS` relationship between the Vulnerability and the resource entity that was impacted serves as the record of the finding. The `IMPACTS` relationship carries properties such as 'identifiedOn', 'remediatedOn', 'remediationDueOn', 'issueLink', etc.
+- [Firewall](/data-model/schemas/Firewall.md): A piece of hardware or software that protects a network/host/application.
+- [Framework](/data-model/schemas/Framework.md): An object to represent a standard compliance or technical security framework.
+- [Function](/data-model/schemas/Function.md): A virtual application function. For example, an aws_lambda_function, azure_function, or google_cloud_function
+- [Gateway](/data-model/schemas/Gateway.md): A gateway/proxy that can be a system/appliance or software service, such as a network router or application gateway.
+- [GraphObject](/data-model/schemas/GraphObject.md): Standard metadata properties of a graph object, maintained by the system. These are visible to users but may not be directly modified.
+- [Group](/data-model/schemas/Group.md): A defined, generic group of Entities. This could represent a group of Resources, Users, Workloads, DataRepositories, etc.
+- [Host](/data-model/schemas/Host.md): A Host represents a computer, virtual machine, or other device that can run software and connect to a network.
+- [HostAgent](/data-model/schemas/HostAgent.md): A software agent or sensor that runs on a host/endpoint.
+- [Image](/data-model/schemas/Image.md): A system image. For example, an AWS AMI (Amazon Machine Image).
+- [Incident](/data-model/schemas/Incident.md): An operational or security incident. An event that negatively affects the confidentiality, integrity or availability of an organization's assets.
+- [Internet](/data-model/schemas/Internet.md): The Internet node in the graph. There should be only one Internet node.
+- [IpAddress](/data-model/schemas/IpAddress.md): An re-assignable IpAddress resource entity. Do not create an entity for an IP Address _configured_ on a Host. Use this only if the IP Address is a reusable resource, such as an Elastic IP Address object in AWS.
+- [IpRange](/data-model/schemas/IpRange.md): consecutive set of IP addresses used for network addressing and management.
+- [Issue](/data-model/schemas/Issue.md): An issue as used by GitHub, Jira, or other project trackers.
+- [JupiterOne Data Model](/data-model/jupiterone-data-model.md): Explore JupiterOne's Data Model and understand relationships and entities, resources and findings.
+- [Key](/data-model/schemas/Key.md): An ssh-key, access-key, api-key/token, pgp-key, etc.
+- [Logs](/data-model/schemas/Logs.md): A specific repository or destination containing application, network, or system logs.
+- [Model](/data-model/schemas/Model.md): A system of postulates, data, and inferences presented as a mathematical description of an entity or state of affairs. For example, a machine learning model.
+- [Module](/data-model/schemas/Module.md): A software or hardware module. Such as an npm_module or java_library.
+- [Network](/data-model/schemas/Network.md): A network, such as an aws-vpc, aws-subnet, cisco-meraki-vlan.
+- [NetworkEndpoint](/data-model/schemas/NetworkEndpoint.md): A network endpoint for connecting to or accessing network resources. For example, NFS mount targets or VPN endpoints.
+- [NetworkInterface](/data-model/schemas/NetworkInterface.md): An re-assignable software defined network interface resource entity. Do not create an entity for a network interface _configured_ on a Host. Use this only if the network interface is a reusable resource, such as an Elastic Network Interface object in AWS.
+- [NHI](/data-model/schemas/NHI.md): A non-human identity (NHI) — any digital identity that is not a person, such as a service account, machine credential, secret, OAuth app, bot, certificate, API key, webhook, or CI/CD identity. NHIs are typically used by software, automation, or workloads to access systems and services.
+- [Organization](/data-model/schemas/Organization.md): An organization, such as a company (e.g. JupiterOne) or a business unit (e.g. HR). An organization can be internal or external. Note that there is a more specific Vendor class.
+- [PasswordPolicy](/data-model/schemas/PasswordPolicy.md): A password policy is a specific `Ruleset`. It is separately defined because of its pervasive usage across digital environments and the well known properties (such as length and complexity) unique to a password policy.
+- [Person](/data-model/schemas/Person.md): An entity that represents an actual person, such as an employee of an organization.
+- [Policy](/data-model/schemas/Policy.md): A written policy documentation.
+- [Port](/data-model/schemas/Port.md): A number assigned to identify a network communication endpoint.
+- [PR](/data-model/schemas/PR.md): A pull request.
+- [Problem](/data-model/schemas/Problem.md): A problem identified from the analysis and correlation of assets and findings that is a notable issue worthy of action. It could be (or become) the cause, or potential cause, of one or more incidents or findings.
+- [Procedure](/data-model/schemas/Procedure.md): A written procedure and control documentation. A Procedure typically `IMPLEMENTS` a parent Policy. An actual Control further `IMPLEMENTS` a Procedure.
+- [Process](/data-model/schemas/Process.md): A compute process -- i.e. an instance of a computer program / software application that is being executed by one or many threads. This is NOT a program level operational process (i.e. a Procedure).
+- [Product](/data-model/schemas/Product.md): A product developed by the organization, such as a software product.
+- [Program](/data-model/schemas/Program.md): A program. For example, a bug bounty/vuln disclosure program.
+- [Project](/data-model/schemas/Project.md): A software development project. Can be used for other generic projects as well but the defined properties are geared towards software development projects.
+- [Question](/data-model/schemas/Question.md): An object that represents an inquiry, usually around some matter of uncertainty or difficulty.
+- [Queue](/data-model/schemas/Queue.md): A scheduling queue of computing processes or devices.
+- [Record](/data-model/schemas/Record.md): A DNS record; or an official record (e.g. Risk); or a written document (e.g. Policy/Procedure); or a reference (e.g. Vulnerability/Weakness). The exact record type is captured in the _type property of the Entity.
+- [RecordEntity](/data-model/schemas/RecordEntity.md): A node in the graph database that represents a Record Entity, with a set of different defined common properties than standard (resource) entities.
+- [Repository](/data-model/schemas/Repository.md): A repository that contains resources. For example, a Docker container registry repository hosting Docker container images.
+- [Requirement](/data-model/schemas/Requirement.md): An individual requirement for security, compliance, regulation or design.
+- [Resource](/data-model/schemas/Resource.md): A generic assignable resource. A resource is typically non-functional by itself unless used by or attached to a host or workload.
+- [Review](/data-model/schemas/Review.md): A review record.
+- [Risk](/data-model/schemas/Risk.md): An object that represents an identified Risk as the result of an Assessment. The collection of Risk objects in JupiterOne make up the Risk Register. A Control may have a `MITIGATES` relationship to a Risk.
+- [Root](/data-model/schemas/Root.md): The root node in the graph. There should be only one Root node per organization account.
+- [Rule](/data-model/schemas/Rule.md): An operational or configuration compliance rule, often part of a Ruleset.
+- [Ruleset](/data-model/schemas/Ruleset.md): An operational or configuration compliance ruleset with rules that govern (or enforce, evaluate, monitor) a security control or IT system.
+- [Scanner](/data-model/schemas/Scanner.md): A system vulnerability, application code or network infrastructure scanner.
+- [Secret](/data-model/schemas/Secret.md): A stored encrypted secret, accessed by permitted users or applications.
+- [Section](/data-model/schemas/Section.md): An object to represent a section such as a compliance section.
+- [Service](/data-model/schemas/Service.md): A service provided by a vendor.
+- [Site](/data-model/schemas/Site.md): The physical location of an organization. A Person (i.e. employee) would typically has a relationship to a Site (i.e. located_at or work_at). Also used as the abstract reference to AWS Regions.
+- [Standard](/data-model/schemas/Standard.md): An object to represent a standard such as a compliance or technical standard.
+- [Subscription](/data-model/schemas/Subscription.md): A subscription to a service or channel.
+- [Task](/data-model/schemas/Task.md): A computational task. Examples include AWS Batch Job, ECS Task, etc.
+- [Team](/data-model/schemas/Team.md): A team consists of multiple member Person entities. For example, the Development team or the Security team.
+- [ThreatIntel](/data-model/schemas/ThreatIntel.md): Threat intelligence captures information collected from vulnerability risk analysis by those with substantive expertise and access to all-source information. Threat intelligence helps a security professional determine the risk of a vulnerability finding to their organization.
+- [Training](/data-model/schemas/Training.md): A training module, such as a security awareness training or secure development training.
+- [User](/data-model/schemas/User.md): A user account/login to access certain systems and/or services. Examples include okta-user, aws-iam-user, ssh-user, local-user (on a host), etc.
+- [UserGroup](/data-model/schemas/UserGroup.md): A user group, typically associated with some type of access control, such as a group in Okta or in Office365. If a UserGroup has an access policy attached, and all member Users of the UserGroup would inherit the policy.
+- [Vault](/data-model/schemas/Vault.md): A collection of secrets such as a key ring
+- [Vendor](/data-model/schemas/Vendor.md): An external organization that is a vendor or service provider.
+- [Vulnerability](/data-model/schemas/Vulnerability.md): A security vulnerability identified by a Common Vulnerabilities and Exposures (CVE) identifier. A single vulnerability may relate to multiple findings and impact multiple resources. The IMPACTS relationship between the Vulnerability and the resource entity that was impacted serves as the record of the finding. The IMPACTS relationship carries properties such as 'identifiedOn', 'remediatedOn', 'remediationDueOn', 'issueLink', etc.
+- [Weakness](/data-model/schemas/Weakness.md): A security weakness identified by a Common Weakness Enumeration (CWE) identifier.
+- [Workflow](/data-model/schemas/Workflow.md): A workflow such as an AWS CodePipeline, GitHub repository workflow, or Apache Airflow.
+- [Workload](/data-model/schemas/Workload.md): A virtual compute instance, it could be an aws-ec2-instance, a docker-container, an aws-lambda-function, an application-process, or a vmware-instance. The exact workload type is described in the _type property of the Entity.
+
+## features
+
+- [Admin settings](/features/admin/admin-settings.md): In addition to account settings, JupiterOne workspace admins have additional configuration settings available to them to manage and organize their JupiterOne workspace.
+- [AI Attack Surface Management](/features/ai-asm/ai-attack-surface-management.md): Discover the non-human and AI identities in your environment, see what data and assets they can reach, and govern them against your compliance frameworks with JupiterOne AI Attack Surface Management.
+- [Alert Rule Action Config Example with Entity Tag Values](/features/insights-and-alerts/alert-rule-action-config-entity-tag-template-example.md): Example of using entity tag values in action config templates within JupiterOne alert rules.
+- [Alert Rule Action Configuration Examples](/features/insights-and-alerts/alert-rule-action-config-examples.md): Quickly enable actions in your rules with these JupiterOne alert rule action examples.
+- [Alert Rule Packs](/features/insights-and-alerts/alert-rule-packs.md): Power JupiterOne Alerts with our prebuilt rule packs. These rule packs are designed to support your cloud service provider of choice as well as to support alerts for particular use cases such as Dev Ops or Device Management.
+- [Alerts](/features/insights-and-alerts/alerts.md): Leverage JupiterOne alerts to incorporate JupiterOne into existing security workflows. Send updates to users or through integrations like Slack to stay up to date on changes within your environment.
+- [Continuous Control Monitoring](/features/ccm/continuous-control-monitoring.md): Automate control effectiveness validation across your entire technology ecosystem with JupiterOne's Continuous Control Monitoring.
+- [Create relationships between owned and non-owned assets](/features/assets/relationships-across-scopes.md): This guide explains the correct way to create relationships between assets you own and those you do not. By following this guide, you will be able to successfully create relationships and view the desired data in the graph.
+- [Critical assets (Deprecated)](/features/assets/critical-assets.md): Critical assets have been replaced by JupiterOne smart classes. Recreate critical assets as a CriticalAsset smart class and query them with the
+- [Custom data ingestion](/features/assets/custom-data-ingestion.md): Learn how to gather, classify, and import your cyber assets effectively. Leverage the power of a graph database to store assets and their relationships. Import data from CSV files, APIs, or combine from multiple sources. Classify data for optimal usefulness and identify asset relationships.
+- [Custom Framework JSON Upload](/features/ccm/custom-framework-json-upload.md): JSON schema reference and guide for importing custom compliance frameworks into JupiterOne's Continuous Control Monitoring.
+- [Dashboard Management](/features/insights-and-alerts/managing-insights-dashboards.md): Explore managing and interacting with JupiterOne insights dashboards. This includes rearranging, bookmarking, deleting, and exporting existing insights dashboards within JupiterOne.
+- [Data Streaming (J1DS)](/features/admin/data-streaming.md): Stream your JupiterOne graph changes in real time to an Amazon S3 bucket you own.
+- [Detecting Data Changes with Alert Rules](/features/insights-and-alerts/detecting-data-changes.md): Learn how to configure JupiterOne alert rules to detect when data in your graph has changed, including time-based queries and important limitations.
+- [Device Unification](/features/assets/device-unification.md): Device Unification is used to present a single view of Device and Hosts across all integrations. The unification is driven by an accumulation of correlations, and is intended to provide a single node in the JupiterOne graph for each uniquely identified device or host.
+- [Identity Unification](/features/assets/identity-unification.md): Device Unification is used to present a single view of Device and Hosts across all integrations. The unification is driven by an accumulation of correlations, and is intended to provide a single node in the JupiterOne graph for each uniquely identified device or host.
+- [Ingesting assets](/features/assets/ingesting-assets.md): Explore all the ways in which you can ingest your assets in JupiterOne in order to build a comprehensive environment for querying and findings.
+- [Insights](/features/insights-and-alerts/insights.md): JupiterOne's Insights dashboards enable you to visualize your data in a variety of meaningful ways. JupiterOne offers both a comprehensive set of managed dashboards that provide immediate value. With the ability to customize and curate your own dashboards and widgets, you are able to parse your data and visualize it as you see fit.
+- [JupiterOne AI](/features/jupiterone-ai.md): JupiterOne AI uses large language models to help you query your asset graph, investigate security issues, understand entities, and get remediation guidance — all through natural language.
+- [JupiterOne AI capabilities](/features/jupiterone-ai/ai-capabilities.md): Detailed guide to JupiterOne AI capabilities including the AI chatbot, natural language search, entity summaries, remediation recommendations, and control authoring.
+- [JupiterOne Dashboard](/features/admin/j1-dashboard.md): The JupiterOne dashboard is the central hub for all JupiterOne apps. From here, you can navigate to any of JupiterOne's many apps, including assets and compliance and initiate queries directly from the dashboard.
+- [Manual asset creation](/features/assets/create-assets-in-j1.md): Explore how to create and add assets directly within your JupiterOne workspace to bring in new assets to your workspace or enrich existing entries with additional information.
+- [Natural Language search](/features/admin/askj1-ai.md): JupiterOne AI converts your plain text questions into J1QL. This page has moved to the JupiterOne AI documentation.
+- [Organizational Units](/features/admin/organizational-units.md): Scope compliance and vulnerability data to the teams that own it. Learn how organizational units (OUs) and namespaces work, how to create custom OU groupings with J1QL, how to filter by OU in Compliance and Vulnerability Management, and how OUs appear on graph entities.
+- [Query Builder](/features/admin/query-builder.md): The JupiterOne Query Builder is a tool that provides a visual way to build a queries in J1QL without having to have extensive knowledge of the querying language. Learn how to maximize your querying results with this powerful tool.
+- [Querying J1DS Data in Amazon Athena](/features/admin/data-streaming-athena-queries.md): Deploy the AWS Glue and Athena stack and run SQL queries against your JupiterOne entity and relationship change history.
+- [Resource Allowlist tool](/features/admin/resource-allowlist.md): JupiterOne provides a resource allowlisting tool as a Power Up for all Enterprise customers and all Premium customers who have added the Power Up Pack. Learn more on how to enable and utilize this Resource Allowlist tool.
+- [Role-Based Access Control (RBAC)](/features/admin/access-controls.md): Understand JupiterOne's role-based access control system and how to configure permissions for users and groups.
+- [SAML SSO](/features/admin/saml-sso.md): Single sign-on is supported in JupiterOne using a custom authentication client configured within a JupiterOne account. This feature is available to all Enterprise customers.
+- [SCIM 2.0 in JupiterOne](/features/admin/scim2.md): JupiterOne supports SCIM 2.0 (System for Cross-domain Identity Management) following the protocol defined by the IETF. SCIM is an industry-standard protocol designed to simplify user identity management tasks in a multi-domain environment. Learn how to configure SCIM 2.0 within your JupiterOne workspace in this guide.
+- [Security Content Release Notes](/features/insights-and-alerts/security-content-release-notes.md): Monthly release notes for additional value-add security content continously delivered to the JupiterOne platform
+- [Smart Classes](/features/assets/smart-classes.md): Learn more about J1QL Smart Classes, a feature that allows you to annotate your assets with additional business or technical context.
+- [Software Bill of Materials (SBOM)](/features/assets/sbom.md): JupiterOne can ingest SBOM data through an integration, and provides a rich experience for understand SBOM content and vulnerabilities
+- [Unified Vulnerability Management](/features/vulnerability-management.md): Aggregate vulnerability findings from every scanner, prioritize what matters using a transparent risk score, group them into remediation plans, and route owner-scoped cases to your service teams in Jira.
+- [User settings](/features/admin/user-settings.md): JupiterOne provides each user the ability to access, view, and customize various areas of their JupiterOne profile. From within their settings, they can access their profile, review permissions, manage notifications, and create personal API Tokens.
+- [Using Parameters](/features/admin/parameters.md): Leverage parameters to store lengthy values in order to streamline queries and and rules within JupiterOne
+- [Vulnerabilities and Findings](/features/insights-and-alerts/vulns-and-findings.md): JupiterOne offers a dedicated view for highlighting vulnerabilities and findings within Alerts. This surfaces and consolidates findings and vulnerabilities imported from your configured integrations.
+- [What's new in AI-ASM 1.0](/features/ai-asm/ai-asm-1-0.md): AI Attack Surface Management 1.0 introduces non-human identity discovery, automatic AI identity detection, data reachability scoring, a risk-ranked dashboard, and an out-of-the-box NHI governance framework.
+- [What's new in Assets](/features/assets/whats-new-in-assets.md): Assets has been rebuilt on JupiterOne's modern app foundation. Smart Classes now appear alongside your other classes, critical assets are expressed as a Smart Class, opening a Smart Class keeps you in context with a modal, and filters sit at the top of every entity page.
+- [What's new in CCM 1.2](/features/ccm/ccm-1-2.md): Continuous Control Monitoring 1.2 introduces UI-based authoring, AI-assisted control creation, and control lifecycle management.
+- [What's new in CCM 1.3](/features/ccm/ccm-1-3.md): Continuous Control Monitoring 1.3 introduces framework compliance scorecards, organisational unit scoping, controls status views, and daily digest notifications.
+- [What's new in CCM 1.4](/features/ccm/ccm-1-4.md): Continuous Control Monitoring 1.4 introduces Control Attestations - justify a control's compliance with external evidence for a bounded time, with automatic re-failure on expiry.
+- [What's new in Data Out 1.0](/features/integrations/data-out-1-0.md): Data Out 1.0 introduces the JupiterOne outbound integration surface for Jira, with a guided connection wizard, configurable workflow instances, a per-instance jobs log, and a one-click Create ticket action on every failing CCM control.
+- [What's new in Insights](/features/insights-and-alerts/whats-new-in-insights.md): Insights dashboards have a few improvements in the new JupiterOne app: Number and Pie charts now display large values in a compact, locale-aware format, and you can open an existing public dashboard link in the new app by changing the URL.
+- [What's new in Rules and Alerts](/features/insights-and-alerts/whats-new-in-rules-and-alerts.md): Rules and Alerts has been rebuilt on JupiterOne's modern app foundation. The rebuild unifies rules and firing alerts on one page, consolidates each rule onto a single detail page, lets you build Jira ticket actions from live Jira fields, and surfaces action preview and test in a cleaner side panel.
+- [What's new in Search](/features/admin/whats-new-in-search.md): Release notes for search, the inspector, query builder, and related features in the new JupiterOne app.
+- [What's new in UVM 1.0](/features/vulnerability-management/uvm-1-0.md): UVM 1.0 introduces JupiterOne's Unified Vulnerability Management product — the prioritization funnel, configurable risk scoring, CPE-based remediation plans, and ownership-based case routing to Jira.
+- [Working with assets](/features/assets/working-with-assets.md): JupiterOne Assets enables you to see all your digital assets (entities) in one table or graph, allowing you to centralize your data and gain valuable context around your assets. Learn how to manage your assets effectively in this article.
+- [Working with properties](/features/assets/working-with-properties.md): Asset properties enable you to understand more about an asset and search for assets that have a specific property. Editing properties in the UI has been deprecated — update entities through the JupiterOne API.
+
+## integrations
+
+- [1password](/integrations/directory/1password.md): A JupiterOne integration with 1password
+- [42Gears SureMDM](/integrations/directory/gears-sure-mdm.md): A JupiterOne integration with 42Gears SureMDM
+- [Add an integration](/integrations/add-an-integration.md): Take the first step towards populating data within JupiterOne by adding an integration.
+- [Addigy](/integrations/directory/addigy.md): A JupiterOne integration with Addigy
+- [AirWatch](/integrations/directory/airwatch.md): A JupiterOne integration with AirWatch
+- [Alibaba Cloud](/integrations/directory/alibaba-cloud.md): A JupiterOne integration with Alibaba Cloud
+- [Anthropic](/integrations/directory/anthropic.md): A JupiterOne integration with Anthropic
+- [Apple Business Manager](/integrations/directory/apple-business-manager.md): A JupiterOne integration with Apple Business Manager
+- [Aqua Security](/integrations/directory/aquasec.md): A JupiterOne integration with Aqua Security
+- [Armis](/integrations/directory/armis.md): A JupiterOne integration with Armis
+- [Artifactory](/integrations/directory/artifactory.md): A JupiterOne integration with Artifactory
+- [Asana](/integrations/directory/asana.md): A JupiterOne integration with Asana
+- [Asset Panda](/integrations/directory/asset-panda.md): A JupiterOne integration with Asset Panda
+- [atSpoke](/integrations/directory/atspoke.md): A JupiterOne integration with atSpoke
+- [Auth0](/integrations/directory/auth0.md): A JupiterOne integration with Auth0
+- [Automox](/integrations/directory/automox.md): A JupiterOne integration with Automox
+- [AWS](/integrations/directory/aws.md): A JupiterOne integration with AWS
+- [AWS GovCloud](/integrations/directory/aws-govcloud.md): Secure your government workloads with JupiterOne's AWS GovCloud integration. Our guide walks you through the installation process and showcases the integration's data model, providing you with comprehensive visibility into your GovCloud environment. Learn how AWS GovCloud integration can help you monitor and manage your security posture, ensuring that you meet government security and compliance requirements
+- [Azure](/integrations/directory/azure.md): A JupiterOne integration with Azure
+- [Azure DevOps](/integrations/directory/azure-devops.md): A JupiterOne integration with Azure DevOps
+- [BambooHR](/integrations/directory/bamboohr.md): A JupiterOne integration with BambooHR
+- [BigID](/integrations/directory/bigid.md): A JupiterOne integration with BigID
+- [Bitbucket](/integrations/directory/bitbucket.md): A JupiterOne integration with Bitbucket
+- [Bitdefender](/integrations/directory/bitdefender.md): A JupiterOne integration with Bitdefender
+- [Braintrust](/integrations/directory/braintrust.md): A JupiterOne integration with Braintrust
+- [Bugcrowd](/integrations/directory/bugcrowd.md): A JupiterOne integration with Bugcrowd
+- [Carbon Black PSC](/integrations/directory/cbdefense.md): A JupiterOne integration with Carbon Black PSC
+- [Checkmarx](/integrations/directory/checkmarx.md): A JupiterOne integration with Checkmarx
+- [Checkpoint Harmony](/integrations/directory/checkpoint-harmony.md): A JupiterOne integration with Checkpoint Harmony
+- [CircleCI](/integrations/directory/circleci.md): A JupiterOne integration with CircleCI
+- [Cisco ACI](/integrations/directory/cisco-aci.md): A JupiterOne integration with Cisco ACI
+- [Cisco ISE](/integrations/directory/cisco-ise.md): A JupiterOne integration with Cisco ISE
+- [Cisco Meraki](/integrations/directory/cisco-meraki.md): A JupiterOne integration with Cisco Meraki
+- [Cisco Secure Endpoint](/integrations/directory/cisco-amp.md): A JupiterOne integration with Cisco Secure Endpoint
+- [Cisco Secure Workload](/integrations/directory/cisco-secure-workload.md): A JupiterOne integration with Cisco Secure Workload
+- [Cisco Umbrella](/integrations/directory/cisco-umbrella.md): A JupiterOne integration with Cisco Umbrella
+- [Cloudbees](/integrations/directory/cloudbees.md): A JupiterOne integration with Cloudbees
+- [Cloudflare](/integrations/directory/cloudflare.md): A JupiterOne integration with Cloudflare
+- [Cobalt](/integrations/directory/cobalt.md): A JupiterOne integration with Cobalt
+- [Configure a Jira connection](/integrations/data-out/configure-jira-connection.md): Authorize JupiterOne to create and update Jira issues using an Atlassian API token. The Connection wizard walks through Connect and Verify steps and surfaces an Authorization status badge for ongoing health.
+- [Confluent Cloud](/integrations/directory/confluent-cloud.md): A JupiterOne integration with Confluent Cloud
+- [Controlup](/integrations/directory/controlup.md): A JupiterOne integration with Controlup
+- [Create a Jira ticket from a failing CCM control test](/integrations/data-out/create-ticket-from-ccm.md): Turn any failing Continuous Control Monitoring control into a tracked Jira ticket. Walk through the Create ticket modal's four fields, send the ticket, and use Linked Jira issues to confirm and open the ticket in Jira.
+- [Create an instance](/integrations/data-out/create-instance.md): Walk through the three-step Add Jira instance wizard to attach an instance to a connection, choose a Jira project and issue type, and send an optional test payload.
+- [CrowdStrike](/integrations/directory/crowdstrike.md): A JupiterOne integration with CrowdStrike
+- [CrowdStrike Falcon Cloud Security](/integrations/directory/crowdstrike-fcs.md): A JupiterOne integration with CrowdStrike Falcon Cloud Security
+- [Custom Definitions](/integrations/development/custom-definitions.md): Author your own integration definition in JupiterOne to ingest data from any tool, including providers without a managed integration, on-premise systems, and proprietary internal applications. Learn the difference between definitions, instances, and jobs, and pick an ingestion option — BYOI runner, direct Sync API, or CSV upload.
+- [Custom File Transfer (CFT)](/integrations/development/custom-file-transfer.md): Custom File Transfer (CFT) is one of the ingestion options for a Custom definition. After creating the definition, upload assets and relationships as CSV files.
+- [Custom integration: Code + Sync API](/integrations/development/custom-instance.md): Build a Custom instance ingestion path. Use the instance's API key to push entities and relationships to JupiterOne via the Sync API. Includes step-by-step build guidance and entity/relationship construction patterns.
+- [CyberArk EPM](/integrations/directory/cyberark-epm.md): A JupiterOne integration with CyberArk EPM
+- [CyberArk Idaptive](/integrations/directory/cyberark-idaptive.md): A JupiterOne integration with CyberArk Idaptive
+- [CyberArk PAM](/integrations/directory/cyberark-pam.md): A JupiterOne integration with CyberArk PAM
+- [Cyberhaven](/integrations/directory/cyberhaven.md): A JupiterOne integration with Cyberhaven
+- [CyCognito](/integrations/directory/cycognito.md): A JupiterOne integration with CyCognito
+- [Data Out overview](/integrations/data-out/overview.md): Send JupiterOne findings, alerts, and failing CCM control tests to the systems your team already works in. Data Out is JupiterOne's outbound integration surface for creating and tracking tickets in external tools like Jira.
+- [Data Sources](/integrations/data-sources.md): Learn about JupiterOne's integration data sources with this comprehensive guide. Gain insights on configuring and customizing your integration settings to optimize your security and compliance workflows. Explore the various settings available and how to use them to your advantage.
+- [Databricks](/integrations/directory/databricks.md): A JupiterOne integration with Databricks
+- [Datadog](/integrations/directory/datadog.md): A JupiterOne integration with Datadog
+- [DataStax](/integrations/directory/datastax.md): A JupiterOne integration with DataStax
+- [DefenseStorm](/integrations/directory/defense-storm.md): A JupiterOne integration with DefenseStorm
+- [Dell Asset Management](/integrations/directory/dell-asset-management.md): A JupiterOne integration with Dell Asset Management
+- [Detectify](/integrations/directory/detectify.md): A JupiterOne integration with Detectify
+- [Device42](/integrations/directory/device42.md): A JupiterOne integration with Device42
+- [DigiCert](/integrations/directory/digicert.md): A JupiterOne integration with DigiCert
+- [Docker](/integrations/development/collector/docker.md): Guide to deploying the JupiterOne Collector using Docker.
+- [Duo](/integrations/directory/duo.md): A JupiterOne integration with Duo
+- [DX](/integrations/directory/dx.md): A JupiterOne integration with DX
+- [Elastic Cloud](/integrations/directory/elastic-cloud.md): A JupiterOne integration with Elastic Cloud
+- [Esper](/integrations/directory/esper.md): A JupiterOne integration with Esper
+- [Fastly](/integrations/directory/fastly.md): A JupiterOne integration with Fastly
+- [Feroot](/integrations/directory/feroot.md): A JupiterOne integration with Feroot
+- [FleetDM](/integrations/directory/fleetdm.md): A JupiterOne integration with FleetDM
+- [Forescout Eyesight](/integrations/directory/forescout-eyesight.md): A JupiterOne integration with Forescout Eyesight
+- [Fortra DLP](/integrations/directory/fortra-dlp.md): A JupiterOne integration with Fortra DLP
+- [Freshservice](/integrations/directory/freshservice.md): A JupiterOne integration with Freshservice
+- [GitHub](/integrations/directory/github.md): A JupiterOne integration with GitHub
+- [GitLab](/integrations/directory/gitlab.md): A JupiterOne integration with GitLab
+- [GoDaddy](/integrations/directory/godaddy.md): A JupiterOne integration with GoDaddy
+- [Google Cloud](/integrations/directory/google-cloud.md): A JupiterOne integration with Google Cloud
+- [Google Drive](/integrations/directory/google-drive.md): A JupiterOne integration with Google Drive
+- [Google Firebase](/integrations/directory/google-firebase.md): A JupiterOne integration with Google Firebase
+- [Google Workspace](/integrations/directory/google.md): A JupiterOne integration with Google Workspace
+- [HackerOne](/integrations/directory/hackerone.md): A JupiterOne integration with HackerOne
+- [Haekka](/integrations/directory/haekka.md): A JupiterOne integration with Haekka
+- [HashiCorp Vault](/integrations/directory/hashicorp-vault.md): A JupiterOne integration with HashiCorp Vault
+- [HCP Terraform](/integrations/directory/terraform-cloud.md): A JupiterOne integration with HCP Terraform
+- [Heroku](/integrations/directory/heroku.md): A JupiterOne integration with Heroku
+- [Hexnode](/integrations/directory/hexnode.md): A JupiterOne integration with Hexnode
+- [HiBob](/integrations/directory/hibob.md): A JupiterOne integration with HiBob
+- [Horizon3.ia NodeZero](/integrations/directory/horizon3-nodezero.md): A JupiterOne integration with Horizon3.ia NodeZero
+- [HubSpot](/integrations/directory/hubspot.md): A JupiterOne integration with HubSpot
+- [Index](/integrations/integrations-directory.md): Explore all of JupiterOne's integration offerings to integrate with your tooling.
+- [Infoblox NIOS](/integrations/directory/infoblox-nios.md): A JupiterOne integration with Infoblox NIOS
+- [Instance management](/integrations/instance-management.md): Learn how to effectively manage your integration instances with JupiterOne's instance management guide. Discover how to run, edit, and remove instances to ensure your integrations are properly configured and functioning effectively.
+- [Integration Settings](/integrations/settings.md): Learn about JupiterOne's integration settings with this comprehensive guide. Gain insights on configuring and customizing your integration settings to optimize your security and compliance workflows. Explore the various settings available and how to use them to your advantage.
+- [Integrations Overview](/integrations.md): JupiterOne integration overview. JupiterOne has over 180 integrations.
+- [IriusRisk](/integrations/directory/iriusrisk.md): A JupiterOne integration with IriusRisk
+- [Jamf](/integrations/directory/jamf.md): A JupiterOne integration with Jamf
+- [Jenkins](/integrations/directory/jenkins.md): A JupiterOne integration with Jenkins
+- [Jira](/integrations/directory/jira.md): A JupiterOne integration with Jira
+- [Jira](/integrations/outbound-directory/jira.md): Sync data from JupiterOne into your Jira account
+- [JumpCloud](/integrations/directory/jumpcloud.md): A JupiterOne integration with JumpCloud
+- [JupiterOne AI Integration (MCP Server)](/integrations/jupiterone-mcp-server.md): Connect AI assistants to JupiterOne through the Model Context Protocol (MCP) server, available in local and remote configurations.
+- [JupiterOne Collector](/integrations/development/j1-collector.md): Ingest your data into JupiterOne from on-premise and self-hosted applications on your network through the JupiterOne collectors.
+- [Justworks 2.0](/integrations/directory/justworks.md): A JupiterOne integration with Justworks 2.0
+- [Kandji](/integrations/directory/kandji.md): A JupiterOne integration with Kandji
+- [KnowBe4](/integrations/directory/knowbe4.md): A JupiterOne integration with KnowBe4
+- [Kubernetes](/integrations/development/collector/kubernetes.md): Guide to deploying the JupiterOne Collector on Kubernetes.
+- [Kubernetes Managed](/integrations/directory/kubernetes-managed.md): A JupiterOne integration with Kubernetes Managed
+- [Kubernetes Native](/integrations/directory/kubernetes.md): A JupiterOne integration with Kubernetes Native
+- [Lacework](/integrations/directory/lacework.md): A JupiterOne integration with Lacework
+- [Lansweeper](/integrations/directory/lansweeper.md): A JupiterOne integration with Lansweeper
+- [LastPass](/integrations/directory/lastpass.md): A JupiterOne integration with LastPass
+- [Linear](/integrations/directory/linear.md): A JupiterOne integration with Linear
+- [LinkedIn Learning](/integrations/directory/linkedin-learning.md): A JupiterOne integration with LinkedIn Learning
+- [LogicMonitor](/integrations/directory/logicmonitor.md): A JupiterOne integration with LogicMonitor
+- [Malwarebytes](/integrations/directory/malwarebytes.md): A JupiterOne integration with Malwarebytes
+- [Manage instances](/integrations/data-out/manage-instances.md): Browse the Instances tab, take row-level actions (Stop, Edit, Delete) on a Data Out instance, and use the per-instance detail page to inspect status, lifetime metrics, and the recent job history.
+- [ManageEngine Endpoint Central](/integrations/directory/manage-engine-ec.md): A JupiterOne integration with ManageEngine Endpoint Central
+- [Mandiant ASM](/integrations/directory/mandiant-asm.md): A JupiterOne integration with Mandiant ASM
+- [MarkMonitor](/integrations/directory/markmonitor.md): A JupiterOne integration with MarkMonitor
+- [Microsoft 365](/integrations/directory/microsoft-365.md): A JupiterOne integration with Microsoft 365
+- [Microsoft Active Directory](/integrations/directory/microsoft-active-directory.md): A JupiterOne integration with Microsoft Active Directory
+- [Microsoft Configuration Manager (SCCM)](/integrations/directory/microsoft-configuration-manager.md): A JupiterOne integration with Microsoft Configuration Manager (SCCM)
+- [Microsoft Defender for Endpoint](/integrations/directory/defender-endpoint.md): A JupiterOne integration with Microsoft Defender for Endpoint
+- [Microsoft Purview](/integrations/directory/microsoft-purview.md): A JupiterOne integration with Microsoft Purview
+- [Microsoft Teams](/integrations/directory/microsoft-teams.md): A JupiterOne integration with Microsoft Teams
+- [Mimecast](/integrations/directory/mimecast.md): A JupiterOne integration with Mimecast
+- [MongoDB](/integrations/directory/mongodb.md): A JupiterOne integration with MongoDB
+- [Mosyle MDM](/integrations/directory/mosyle-mdm.md): A JupiterOne integration with Mosyle MDM
+- [n8n Community Node](/integrations/outbound-directory/n8n-community-node.md): Learn about JupiterOne's n8n Community Node, how to install and configure it, and how to use it in your automation and workflows.
+- [Netbox](/integrations/directory/netbox.md): A JupiterOne integration with Netbox
+- [Netskope](/integrations/directory/netskope.md): A JupiterOne integration with Netskope
+- [Nexthink](/integrations/directory/nexthink.md): A JupiterOne integration with Nexthink
+- [NinjaOne](/integrations/directory/ninja-one.md): A JupiterOne integration with NinjaOne
+- [NowSecure](/integrations/directory/nowsecure.md): A JupiterOne integration with NowSecure
+- [npm](/integrations/directory/npm.md): A JupiterOne integration with npm
+- [Nutanix](/integrations/directory/nutanix.md): A JupiterOne integration with Nutanix
+- [Okta](/integrations/directory/okta.md): A JupiterOne integration with Okta
+- [OneLogin](/integrations/directory/onelogin.md): A JupiterOne integration with OneLogin
+- [OneTrust](/integrations/directory/one-trust.md): A JupiterOne integration with OneTrust
+- [Oomnitza](/integrations/directory/oomnitza.md): A JupiterOne integration with Oomnitza
+- [Oracle Cloud](/integrations/directory/oracle-cloud.md): A JupiterOne integration with Oracle Cloud
+- [Orca Security](/integrations/directory/orca.md): A JupiterOne integration with Orca Security
+- [Overview](/integrations/development/collector.md): Ingest your data into JupiterOne from on-premise and self-hosted applications on your network through the JupiterOne collectors.
+- [Overview](/integrations/development/overview.md): Build your own integrations with JupiterOne. Author a Custom Definition and pick how to feed data in — Custom File Transfer for CSV uploads, or a Custom instance with code and the Sync API.
+- [PagerDuty](/integrations/directory/pagerduty.md): A JupiterOne integration with PagerDuty
+- [Palo Alto Cortex XDR](/integrations/directory/palo-alto.md): A JupiterOne integration with Palo Alto Cortex XDR
+- [Palo Alto Prisma Cloud](/integrations/directory/palo-alto-prisma-cloud.md): A JupiterOne integration with Palo Alto Prisma Cloud
+- [Pillar Security](/integrations/directory/pillar.md): A JupiterOne integration with Pillar Security
+- [PingIdentity](/integrations/directory/pingidentity.md): A JupiterOne integration with PingIdentity
+- [Polymer](/integrations/directory/polymer.md): A JupiterOne integration with Polymer
+- [Privacy Policy](/integrations/outbound-directory/jira/privacy-policy.md): Privacy policy for the JupiterOne-Jira integration application, describing what information is collected, how it is used, and how it is safeguarded.
+- [Probely](/integrations/directory/probely.md): A JupiterOne integration with Probely
+- [Pulseway](/integrations/directory/pulseway.md): A JupiterOne integration with Pulseway
+- [Puppet](/integrations/directory/puppet.md): A JupiterOne integration with Puppet
+- [Push Security](/integrations/directory/push-security.md): A JupiterOne integration with Push Security
+- [Qualys](/integrations/directory/qualys.md): A JupiterOne integration with Qualys
+- [Qualys TotalCloud](/integrations/directory/qualys-totalcloud.md): A JupiterOne integration with Qualys TotalCloud
+- [Rapid7 Insight Platform](/integrations/directory/rapid7-insight.md): A JupiterOne integration with Rapid7 Insight Platform
+- [Rapid7 Nexpose](/integrations/directory/rapid7.md): A JupiterOne integration with Rapid7 Nexpose
+- [Reco](/integrations/directory/reco.md): A JupiterOne integration with Reco
+- [Red Hat Quay](/integrations/directory/red-hat-quay.md): A JupiterOne integration with Red Hat Quay
+- [Rippling](/integrations/directory/rippling.md): A JupiterOne integration with Rippling
+- [Rumble](/integrations/directory/rumble.md): A JupiterOne integration with Rumble
+- [Sailpoint IdentityIQ](/integrations/directory/sailpoint-iiq.md): A JupiterOne integration with Sailpoint IdentityIQ
+- [Salesforce](/integrations/directory/salesforce.md): A JupiterOne integration with Salesforce
+- [SBOM](/integrations/directory/sbom.md): A JupiterOne integration with SBOM
+- [Secureworks Taegis](/integrations/directory/taegis.md): A JupiterOne integration with Secureworks Taegis
+- [Security and Compliance Policy](/integrations/outbound-directory/jira/security-policy.md): Security and compliance policies for the JupiterOne-Jira integration application, covering security governance, access control, and data protection.
+- [SecurityScorecard](/integrations/directory/security-scorecard.md): A JupiterOne integration with SecurityScorecard
+- [Self-manage Integrations](/integrations/development/self-managing.md): Managing integration
+- [Semaphore](/integrations/directory/semaphore.md): A JupiterOne integration with Semaphore
+- [Semgrep](/integrations/directory/semgrep.md): A JupiterOne integration with Semgrep
+- [SentinelOne](/integrations/directory/sentinelone.md): A JupiterOne integration with SentinelOne
+- [Sentry](/integrations/directory/sentry.md): A JupiterOne integration with Sentry
+- [ServiceNow](/integrations/directory/servicenow.md): A JupiterOne integration with ServiceNow
+- [Setup Guide](/integrations/outbound-directory/jira/setup.md): Set up the JupiterOne-Jira integration to automatically generate Jira tickets from JupiterOne alerts, including prerequisites and field mapping.
+- [Shodan](/integrations/directory/shodan.md): A JupiterOne integration with Shodan
+- [Signal Sciences (Fastly)](/integrations/directory/signal-sciences.md): A JupiterOne integration with Signal Sciences (Fastly)
+- [SimpleMDM](/integrations/directory/simplemdm.md): A JupiterOne integration with SimpleMDM
+- [Slack](/integrations/directory/slack.md): A JupiterOne integration with Slack
+- [Snipe-IT](/integrations/directory/snipe-it.md): A JupiterOne integration with Snipe-IT
+- [Snowflake](/integrations/directory/snowflake.md): A JupiterOne integration with Snowflake
+- [Snyk](/integrations/directory/snyk.md): A JupiterOne integration with Snyk
+- [Socket](/integrations/directory/socket.md): A JupiterOne integration with Socket
+- [SonarCloud](/integrations/directory/sonarcloud.md): A JupiterOne integration with SonarCloud
+- [SonarQube](/integrations/directory/sonarqube.md): A JupiterOne integration with SonarQube
+- [Sophos](/integrations/directory/sophos.md): A JupiterOne integration with Sophos
+- [Splunk](/integrations/directory/splunk.md): Gain comprehensive visibility into your security data with JupiterOne's Splunk integration. Our guide provides instructions on setting up the integration and utilizing its data model to monitor your Splunk environment for security risks and anomalies. Learn how the Splunk integration can help you streamline your security operations and respond to threats more effectively.
+- [StackHawk](/integrations/directory/stackhawk.md): A JupiterOne integration with StackHawk
+- [Sysdig](/integrations/directory/sysdig.md): A JupiterOne integration with Sysdig
+- [Tanium](/integrations/directory/tanium.md): A JupiterOne integration with Tanium
+- [Teleport](/integrations/directory/teleport.md): A JupiterOne integration with Teleport
+- [Teleskope](/integrations/directory/teleskope.md): A JupiterOne integration with Teleskope
+- [Tenable.io](/integrations/directory/tenable-cloud.md): A JupiterOne integration with Tenable.io
+- [Terms and Conditions](/integrations/outbound-directory/jira/terms-and-conditions.md): Customer terms of service for the JupiterOne Jira integration application available on the Atlassian Marketplace.
+- [Test your instance](/integrations/data-out/test-instance.md): Send a real test payload to verify a Jira instance is wired correctly. Validate round-trip delivery before relying on the instance for CCM tickets, and learn how to interpret the resulting success and failure counts.
+- [ThreatNG](/integrations/directory/threat-ng.md): A JupiterOne integration with ThreatNG
+- [Torii](/integrations/directory/torii.md): A JupiterOne integration with Torii
+- [TravisCI](/integrations/directory/travisci.md): A JupiterOne integration with TravisCI
+- [Trellix](/integrations/directory/trellix.md): A JupiterOne integration with Trellix
+- [Trellix ePO](/integrations/directory/trellix-epo.md): A JupiterOne integration with Trellix ePO
+- [Trend Cloud One](/integrations/directory/trend-micro.md): A JupiterOne integration with Trend Cloud One
+- [Trend Micro Vision One](/integrations/directory/trend-vision-one.md): A JupiterOne integration with Trend Micro Vision One
+- [Troubleshooting Data Out](/integrations/data-out/troubleshooting.md): Common Data Out failure modes - from connection authentication to a stuck job - with the fastest path to recovery for each.
+- [Tufin](/integrations/directory/tufin.md): A JupiterOne integration with Tufin
+- [Upwind](/integrations/directory/upwind.md): A JupiterOne integration with Upwind
+- [Veracode](/integrations/directory/veracode.md): A JupiterOne integration with Veracode
+- [VMware Cloud Director](/integrations/directory/vmware-cloud-director.md): A JupiterOne integration with VMware Cloud Director
+- [vSphere](/integrations/directory/vsphere.md): A JupiterOne integration with vSphere
+- [watchTowr](/integrations/directory/watchtowr.md): A JupiterOne integration with watchTowr
+- [Wazuh](/integrations/directory/wazuh.md): A JupiterOne integration with Wazuh
+- [WhiteHat](/integrations/directory/whitehat.md): A JupiterOne integration with WhiteHat
+- [Whois](/integrations/directory/whois.md): A JupiterOne integration with Whois
+- [Wiz](/integrations/directory/wiz.md): A JupiterOne integration with Wiz
+- [Workday 2.0](/integrations/directory/workday.md): A JupiterOne integration with Workday 2.0
+- [Workwize](/integrations/directory/workwize.md): A JupiterOne integration with Workwize
+- [WP Engine](/integrations/directory/wpengine.md): A JupiterOne integration with WP Engine
+- [XM Cyber](/integrations/directory/xmcyber.md): A JupiterOne integration with XM Cyber
+- [Zendesk](/integrations/directory/zendesk.md): A JupiterOne integration with Zendesk
+- [Zentral](/integrations/directory/zentral.md): A JupiterOne integration with Zentral
+- [Zoom](/integrations/directory/zoom.md): A JupiterOne integration with Zoom
+- [Zscaler](/integrations/directory/zscaler.md): A JupiterOne integration with Zscaler
+
+## j1ql
+
+- [Aggregate functions](/j1ql/aggregate-functions.md): Learn more about utilizing aggregate functions within your J1QL queries to perform calculations on groups of entities and derive meaningful insights from your data.
+- [Apps and processes](/j1ql/queries/apps-and-processes.md): Explore J1QL queries illustrating various ways to query your JupiterOne workspace's app and processes data.
+- [AWS permissions and trusts](/j1ql/queries/aws-permissions.md): View J1QL queries for retrieving data relevant to your AWS permissions and trusts in your JupiterOne workspace—including IAM policies.
+- [Basic Keywords](/j1ql/basic-keywords.md): In this article, we'll cover the basic commands of J1QL, a query language used for data exploration and retrieval in JupiterOne. By understanding these fundamental commands, you'll gain the necessary skills to query specific entities, filter data, and sort information effectively.
+- [Basic queries](/j1ql/basic-queries.md): Explore the list of preconfigured, basic J1QL queries provided for you within your JupiterOne app instance.
+- [Changes and attribution](/j1ql/queries/changes-and-attribution.md): Evaluate changes that may have occurred within your environment in JupiterOne with these example J1QL queries.
+- [CIDR Filtering](/j1ql/cidr-filtering.md): Learn how to filter entities by IP address ranges using CIDR notation in J1QL.
+- [Comparisons](/j1ql/comparisons.md): Learn about J1QL's comparison capabilities and compare results with string comparisons and date comparisons for effective filtering and analysis of your data.
+- [Data security](/j1ql/queries/data-security.md): Find example queries for J1QL that are aimed at identifying data security findings.
+- [Development](/j1ql/queries/delopment.md): Explore J1QL queries that surface findings within your development environments such as GitHub or Bitbucket.
+- [Filtering behavior](/j1ql/filtering-behavior.md): Learn more about filtering behavior available in JupiterOne's query language (J1QL). Filter your query results in a variety of ways including by property and metadata.
+- [Identity, people, and access](/j1ql/queries/identity-people-priveleged-access.md): Explore J1QL queries illustrating various ways to query your JupiterOne data relating to identity, people, and privileged access.
+- [Inventory and configuration](/j1ql/queries/inventory-config.md): Explore J1QL queries illustrating various ways to query your inventory and configuration data in JupiterOne.
+- [J1QL Overview](/j1ql.md): J1QL (JupiterOne Query Language) is a powerful natural query language designed for querying and analyzing data in the JupiterOne platform. Click to learn more.
+- [J1QL Style Guide](/j1ql/style.md): The preferred style for J1QL queries.
+- [Math operations and expressions](/j1ql/math-operations-expressions.md): Explore the supported mathematical operations and expressions available for use within JupiterOne's query language (J1QL) and leverage them to perform advanced calculations and analysis of your data.
+- [Network connections and zones](/j1ql/queries/network-zones.md): Evaluate network connections and zone data in JupiterOne with these example J1QL queries.
+- [Optional traversals](/j1ql/optional-traversals.md): Learn more about implementing optional traversals within J1QL to combine entities from graph traversals and apply additional constraints within your queries.
+- [Pagination and sorting](/j1ql/pagination-and-sorting.md): Learn how to sort and paginate your query results in JupiterOne leveraging the ORDER BY, SKIP, and LIMIT commands.
+- [Path Finding functions](/j1ql/path-finding.md): Learn how to find paths through the graph between interesting assets.
+- [Regular Expressions](/j1ql/regular-expressions.md): Learn more about using Regular Expressions (regex) in J1QL for property filters and named capture group extraction.
+- [Resolving duplicate results](/j1ql/resolving-duplicate-results.md): Learn how to resolve instances of duplicate results in J1QL through the use of the UNIQUE, RETURN, and MERGE commands.
+- [Scalar functions](/j1ql/scalar-functions.md): Learn how to effectively utilize scalar functions within your querying in J1QL. scalar functions enhance the versatility and convenience of J1QL by providing powerful tools for transforming and combining data in queries.
+- [Secrets and key management](/j1ql/queries/key-management.md): Explore J1QL queries illustrating various ways to query your JupiterOne workspace's data relating to secrets and API keys.
+- [Servers and endpoints](/j1ql/queries/servers-endpoints.md): Explore J1QL queries illustrating various ways to query your server and endpoint data in JupiterOne.
+- [Smart classes](/j1ql/smart-classes.md): Learn more about J1QL smart classes, which streamline filtering assets with shorthand syntax. You can additionally create your own smart classes to assist in identifying and querying important assets within your environment.
+- [Subqueries](/j1ql/subqueries.md): Learn more about using Subqueries in J1QL
+- [Unwind](/j1ql/unwind.md): Learn how to effectively utilize unwinding results within your querying in J1QL. Unwind is a powerful tool for working with properties that are lists, and enables working with the scalar components making up lists.
+- [User training](/j1ql/queries/training.md): Find example queries for J1QL that are aimed at highlighting data related to user trainings.
+- [Vulnerability management](/j1ql/queries/risk-vuln-mgmt.md): Explore J1QL queries illustrating various ways to query your JupiterOne data relating to risks and vulnerability management.
+
+## jupiterOne-data-model
+
+- [Entity and Relationship Metadata](/jupiterOne-data-model/metadata.md): Reference for the internal underscore-prefixed metadata (such as _class, _type, _key, and _id) that JupiterOne assigns to every entity and relationship.
+- [Global Mapping Rules](/jupiterOne-data-model/mappings-global.md): Reference list of the global automated mapping rules that apply across all entities in the JupiterOne graph.
+- [Integration Mapping Rules](/jupiterOne-data-model/mappings-integrations.md): Reference list of the automated mapping rules that connect integration-ingested entities to other entities in the JupiterOne graph.
+- [JupiterOne Data Model](/jupiterOne-data-model.md): Overview of the JupiterOne data model, the entity-relationship graph of entities and relationships used to describe digital resources and their interconnections.
+- [JupiterOne Data Model for AWS IAM Access and Trusts](/jupiterOne-data-model/aws-iam.md): Reference model of the AWS IAM identity, access, and trust entities and relationships that the JupiterOne AWS integration ingests into your graph.
+- [JupiterOne Data Model for Governance, Risk, and Compliance (GRC)](/jupiterOne-data-model/org-grc.md): Reference model for standards, sections, requirements, and related GRC entities and relationships, enabling consistent J1QL queries across integrated GRC products.
+- [JupiterOne Data Model for Network and Endpoint Infrastructure](/jupiterOne-data-model/network-endpoint.md): Reference model for network and endpoint protection entities and relationships, enabling consistent J1QL queries across integrated network and endpoint products.
+- [JupiterOne Data Model for Organization, Account, and Vendor Management](/jupiterOne-data-model/org-mgmt.md): Reference model for organization, account, and vendor management entities and relationships, enabling consistent J1QL queries across integrated products.
+- [JupiterOne Data Model for People and Access](/jupiterOne-data-model/people.md): Reference data model for user, people, and access entities and relationships ingested from identity products, enabling consistent J1QL queries across integrations.
+- [JupiterOne Data Model for Software Development](/jupiterOne-data-model/development.md): Reference model for software development entities and relationships, such as code repositories, builds, and findings, ingested from development tool integrations.
+- [JupiterOne Data Model for Vulnerability Management](/jupiterOne-data-model/vuln-mgmt.md): Reference model for finding and vulnerability entities and relationships, enabling consistent J1QL queries across integrated vulnerability management products.
+- [JupiterOne Entity Ingestion Sources](/jupiterOne-data-model/entity-ingestion-sources.md): How JupiterOne labels the ingestion source of each entity and how to filter on the _source property in J1QL queries.
+- [JupiterOne Entity Relationship Mappings](/jupiterOne-data-model/mappings.md): How JupiterOne infers and builds relationships between entities across systems using mapping rules, including entities generated to represent implied resources.
+- [JupiterOne Parameter Service](/jupiterOne-data-model/parameters.md): Store values such as long URLs, secrets, and shared constants as parameters and reference them in JupiterOne rules and queries instead of hardcoding literals.
+
+## platform-overview
+
+- [Alerts and workflows](/platform-overview/alerts-intro.md): Take the results of JupiterOne queries that need remediation, or that need to be sent to external systems, and leverage alert rules and workflows to perform actions such as creating notifications, creating tickets, assigning ownership, or tagging resources.
+- [Asset Insights](/platform-overview/assets-intro.md): Learn about how JupiterOne defines an asset which includes findings, dashboards, permissions and users; things not normally included in an asset management solution. Filter and search for all assets in one place, and leverage our library of questions already available.
+- [Billing FAQs](/platform-overview/billing-faqs.md): FAQs around JupiterOne billing.
+- [Billing FAQs (Legacy)](/platform-overview/legacy-billing.md): FAQs around JupiterOne billing.
+- [Cloud Security Posture Management](/platform-overview/cspm-intro.md): Starting with the example "Are there public facing instances that are allowed to access non-public S3 buckets" explore the value of graph queries looking at risk that exists across your cloud infrastructure.
+- [Incident Response](/platform-overview/incident-response-intro.md): Explore two use cases for incident response in two scenarios, cloud workflows and user endpoint blast radius. The JupiterOne graph provides the context you need to accurately diagnose and explore incidents, blast radius, and asset relationships to respond to an incident.
+- [JupiterOne Intro](/platform-overview/j1-platform-introduction.md): JupiterOne is a data platform that allows for integrating with hundreds of tools. It aims to centralize all of your assets and data, and search your entire inventory in a manner that supports a variety of security-related use cases.
+- [Vulnerability Reporting](/platform-overview/vulnerability-reporting-intro.md): JupiterOne aggregates and evaluates vulnerability findings across your digital environment, highlighting the most critical findings so that you can address them.
+
+## reference
+
+- [API Overview](/reference.md): JupiterOne API Overview
+- [Browser Support](/reference/browser-support.md): Learn about the different browsers that are supported for the JupiterOne experience.
+- [Changes to JupiterOne Query API](/reference/api-query-pagination-changes.md): Changes to the way the JupiterOne Query API should be safely used for pagination of query results.
+- [Data Pipeline Upgrade Overview and Compatibility](/reference/pipeline-upgrade.md): Details about the data pipeline upgrade and notable changes
+- [Data Retention Enhancements Announcement](/reference/data-retention.md): Overview of JupiterOne data retention policies, including retention periods for graph data, soft-deleted data, alert aggregate metrics, and alert raw results.
+- [Drop rules (admin)](/reference/drop-rules.md): Admin-only reference for drop rules — a customer-owned, per-account filter that skips ingesting entities you consider noise, managed through the JupiterOne GraphQL API.
+- [Graph Upgrade Overview and Compatibility](/reference/graph-upgrade.md): Details about the graph upgrade and how it may change your JupiterOne query experience.
+- [JupiterOne Vulnerability Score](/reference/vulnerability-score.md): Understand how JupiterOne calculates the jupiteroneVulnPriority score for Unified Vulnerability
+- [Unified Devices and Device Matrix](/reference/unified-device.md): Details about the device unification in JupiterOne and the new Device Matrix visualizations
+- [Unified Vulnerability and VulnCheck Enrichment](/reference/unified-vulnerability.md): Details about the vulnerability unification in JupiterOne and the associated VulnCheck Enrichment
+- [Updates and Corrections to JupiterOne Query API](/reference/api-query-eratta.md): Changes to the way the JupiterOne Query API should be used or the way results are returned.
+
+## release-notes
+
+- [April 2023](/release-notes/apr-2023.md): JupiterOne release notes for April 2023.
+- [April 2024](/release-notes/apr-2024.md): JupiterOne release notes for April 2024.
+- [April 2025](/release-notes/apr-2025.md): JupiterOne release notes for April 2025.
+- [August 2023](/release-notes/aug-2023.md): JupiterOne release notes for August 2023.
+- [August 2025](/release-notes/aug-2025.md): JupiterOne release notes for August 2025.
+- [December 2023](/release-notes/dec-2023.md): JupiterOne release notes for December 2023.
+- [December 2024](/release-notes/dec-2024.md): JupiterOne release notes for December 2024.
+- [February 2023](/release-notes/feb-2023.md): JupiterOne release notes for February 2023.
+- [February 2024](/release-notes/feb-2024.md): JupiterOne release notes for February 2024.
+- [February 2025](/release-notes/feb-2025.md): JupiterOne release notes for February 2025.
+- [January 2023](/release-notes/jan-2023.md): JupiterOne release notes for January 2023.
+- [January 2024](/release-notes/jan-2024.md): JupiterOne release notes for January 2024.
+- [January 2025](/release-notes/jan-2025.md): JupiterOne release notes for January 2025.
+- [July - September 2024](/release-notes/sep-2024.md): JupiterOne release notes for July - September 2024.
+- [July 2023](/release-notes/jul-2023.md): JupiterOne release notes for July 2023.
+- [July 2025](/release-notes/jul-2025.md): JupiterOne release notes for July 2025.
+- [June 2023](/release-notes/jun-2023.md): JupiterOne release notes for June 2023.
+- [June 2024](/release-notes/jun-2024.md): JupiterOne release notes for June 2024.
+- [June 2025](/release-notes/jun-2025.md): JupiterOne release notes for June 2025.
+- [March 2023](/release-notes/mar-2023.md): JupiterOne release notes for March 2023.
+- [March 2024](/release-notes/mar-2024.md): JupiterOne release notes for March 2024.
+- [March 2025](/release-notes/mar-2025.md): JupiterOne release notes for March 2025.
+- [May 2023](/release-notes/may-2023.md): JupiterOne release notes for May 2023.
+- [May 2024](/release-notes/may-2024.md): JupiterOne release notes for May 2024.
+- [May 2025](/release-notes/may-2025.md): JupiterOne release notes for May 2025.
+- [November 2023](/release-notes/nov-2023.md): JupiterOne release notes for November 2023.
+- [November 2024](/release-notes/nov-2024.md): JupiterOne release notes for November 2024.
+- [October 2023](/release-notes/oct-2023.md): JupiterOne release notes for October 2023.
+- [October 2024](/release-notes/oct-2024.md): JupiterOne release notes for October 2024.
+- [Release Notes](/release-notes.md): Check out our release notes to stay up to date on all the new features, fixes, and changes within the JupiterOne platform.
+- [September 2023](/release-notes/sep-2023.md): JupiterOne release notes for September 2023.
+- [September 2025](/release-notes/sep-2025.md): JupiterOne release notes for September 2025.
+
+## style-guide
+
+- [Style Guide](/style-guide.md): Writing style guide covering all considerations when writing on and for JupiterOne's documentation space

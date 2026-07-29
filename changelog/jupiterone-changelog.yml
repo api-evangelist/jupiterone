@@ -1,0 +1,20 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.jupiterone.io/release-notes
+docs: https://docs.jupiterone.io/release-notes
+scheme: dated-monthly
+description: >-
+  JupiterOne publishes dated monthly release notes covering platform features,
+  fixes, and integration updates. The live release-notes site is the source of
+  truth; a recent entry is captured below.
+entries:
+- version: feb-2025
+  date: '2025-02-01'
+  url: https://docs.jupiterone.io/release-notes/feb-2025
+  breaking: false
+  highlights:
+  - Improved J1 API stability, addressing timeout issues and reported slowness.
+  - Added Cloudflare Zero Trust integration.
+  - Updated Microsoft 365 integration.
+  - Enhanced Google Workspace integration with additional relationships and data fields.
+  - Updated Azure integration to address deprecated authentication methods.

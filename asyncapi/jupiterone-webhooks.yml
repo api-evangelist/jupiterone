@@ -1,0 +1,40 @@
+generated: '2026-07-19'
+method: searched
+type: Webhooks
+source: https://docs.jupiterone.io/api/alert-rules
+docs: https://docs.jupiterone.io/api/alert-rules
+description: >-
+  JupiterOne does not publish an AsyncAPI document. Its event/notification surface
+  is delivered through alert-rule actions: when a rule's J1QL condition matches,
+  the platform can dispatch outbound notifications, including generic outbound
+  webhooks and cloud message-bus deliveries.
+event_source: Alert rules (J1QL condition -> action)
+actions:
+- id: WEBHOOK
+  kind: outbound-http
+  methods: [POST, PUT, GET, PATCH, DELETE, HEAD]
+  description: Makes an outbound HTTP request to a configured endpoint when the rule triggers.
+- id: PUBLISH_SNS_MESSAGE
+  kind: aws-sns
+  description: Publishes a message to an AWS SNS topic.
+- id: SEND_SQS_MESSAGE
+  kind: aws-sqs
+  description: Sends a message to an AWS SQS queue.
+- id: SEND_TO_S3
+  kind: aws-s3
+  description: Uploads rule output to an S3 bucket.
+- id: SEND_SLACK_MESSAGE
+  kind: slack
+  description: Posts a message to a Slack channel via webhook.
+- id: CREATE_JIRA_TICKET
+  kind: jira
+  description: Opens a Jira ticket using integration credentials.
+- id: SEND_EMAIL
+  kind: email
+  description: Dispatches an email with alert details.
+- id: CREATE_ALERT
+  kind: internal
+  description: Generates an alert visible in J1 Alerts.
+notes: >-
+  Outbound WEBHOOK, SNS, and SQS actions constitute JupiterOne's push/event delivery
+  surface. There is no provider-published AsyncAPI spec to capture verbatim.

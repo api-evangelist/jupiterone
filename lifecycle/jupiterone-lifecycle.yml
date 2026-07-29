@@ -1,0 +1,21 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.jupiterone.io/release-notes
+versioning:
+  scheme: unversioned-graphql
+  notes: >-
+    The GraphQL schema evolves additively; changes are communicated through dated
+    monthly release notes rather than URI-path or header versioning.
+  docs: https://docs.jupiterone.io/release-notes
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: >-
+    No formal RFC 8594 Sunset/Deprecation header policy is published. Deprecations
+    (e.g. retired integration auth methods) are announced in the release notes.
+status_page: https://status.jupiterone.com/
+changelog: changelog/jupiterone-changelog.yml
+sla:
+  url: null
+  uptime_target: null
+deprecated_operations: []

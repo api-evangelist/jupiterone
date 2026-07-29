@@ -1,8 +1,13 @@
 aid: jupiterone
 name: JupiterOne
-description: 'JupiterOne is a company surfaced as a portfolio company of bain-capital-ventures, sapphire-ventures
-  and added to the API Evangelist network as a stub for enrichment. Sector: security. This profile is
-  a lead awaiting the enrichment pipeline.'
+description: 'JupiterOne is a cyber asset attack surface management (CAASM) and security
+  asset intelligence platform that maps an organization''s entire digital environment
+  — cloud resources, devices, users, code repositories, findings, and the relationships
+  between them — into a single queryable graph. Its public GraphQL API and the J1QL
+  query language let teams query the graph, create and mutate entities and relationships,
+  ingest data through sync jobs, run alert rules with webhook/SNS/SQS/Slack/Jira actions,
+  manage IAM and questions, and automate compliance evidence collection. JupiterOne
+  was founded in 2018 and is headquartered in Morrisville, North Carolina.'
 url: https://raw.githubusercontent.com/api-evangelist/jupiterone/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,13 +16,55 @@ x-backed-by:
 - sapphire-ventures
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
 - Security
-apis: []
+- CAASM
+- Cyber Asset Management
+- Attack Surface Management
+- Cloud Security
+- Graph
+- GraphQL
+- Compliance
+- Asset Intelligence
+image: https://avatars.githubusercontent.com/u/44646512?s=200&v=4
+apis:
+- name: JupiterOne GraphQL API
+  description: 'JupiterOne''s public GraphQL API for querying the security asset graph
+    with J1QL, managing entities and relationships, running alert rules, ingesting
+    data via sync jobs, and administering integrations, IAM, and questions. A REST
+    surface exists for sync jobs.'
+  humanURL: https://docs.jupiterone.io/reference
+  baseURL: https://graphql.us.jupiterone.io
+  tags:
+  - GraphQL
+  - Security
+  - Graph
+  - CAASM
+  properties:
+  - type: Documentation
+    url: https://docs.jupiterone.io/
+  - type: APIReference
+    url: https://docs.jupiterone.io/reference
+  - type: Authentication
+    url: https://docs.jupiterone.io/api/authentication
+  - type: RateLimits
+    url: https://docs.jupiterone.io/api/rate-limiting
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -26,3 +73,64 @@ maintainers:
 common:
 - type: Website
   url: https://www.jupiterone.com/
+- type: DeveloperPortal
+  url: https://docs.jupiterone.io/
+- type: Documentation
+  url: https://docs.jupiterone.io/
+- type: APIReference
+  url: https://docs.jupiterone.io/reference
+- type: GettingStarted
+  url: https://docs.jupiterone.io/reference
+- type: Authentication
+  url: authentication/jupiterone-authentication.yml
+- type: Blog
+  url: https://www.jupiterone.com/blog
+- type: Support
+  url: https://community.askj1.com/
+- type: GitHubOrganization
+  url: https://github.com/JupiterOne
+- type: Pricing
+  url: https://www.jupiterone.com/pricing
+- type: PrivacyPolicy
+  url: https://www.jupiterone.com/privacy-policy
+- type: TermsOfService
+  url: https://www.jupiterone.com/terms-of-use
+- type: Packages
+  url: packages/jupiterone-packages.yml
+- type: SDKs
+  url: packages/jupiterone-packages.yml
+- type: CLI
+  url: cli/jupiterone-cli.yml
+- type: MCPServer
+  url: mcp/jupiterone-mcp.yml
+- type: LLMsTxt
+  url: llms/jupiterone-llms.txt
+- type: Conventions
+  url: conventions/jupiterone-conventions.yml
+- type: RateLimits
+  url: rate-limits/jupiterone-rate-limits.yml
+- type: Lifecycle
+  url: lifecycle/jupiterone-lifecycle.yml
+- type: StatusPage
+  url: https://status.jupiterone.com/
+- type: ChangeLog
+  url: changelog/jupiterone-changelog.yml
+- type: Webhooks
+  url: asyncapi/jupiterone-webhooks.yml
+- type: Conformance
+  url: conformance/jupiterone-conformance.yml
+- type: Compliance
+  url: https://www.jupiterone.com/compliance
+- type: TrustCenter
+  url: security/jupiterone-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/jupiterone-vulnerability-disclosure.yml
+- type: Security
+  url: security/jupiterone-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/jupiterone-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

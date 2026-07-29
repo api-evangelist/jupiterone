@@ -1,0 +1,28 @@
+generated: '2026-07-19'
+method: searched
+probe: true
+url: https://www.jupiterone.com/compliance
+alt_urls:
+- https://www.jupiterone.com/security
+- https://security.jupiterone.com/
+certifications:
+- SOC 2 Type 2
+- ISO 27001
+- CSA STAR
+- PCI DSS
+platform: SafeBase (JupiterOne Trust Center)
+evidence:
+- source: https://www.jupiterone.com/compliance
+  keywords:
+  - soc 2
+  - iso 27001
+  - csa star
+  - pci dss
+- source: https://www.jupiterone.com/blog/jupiterone-completes-soc-2-type-2
+  keywords:
+  - soc 2 type 2
+notes: >-
+  JupiterOne operates a SafeBase-powered trust center. security.jupiterone.com
+  currently redirects to the marketing site; the public compliance and security
+  pages list the named certifications above. Detailed reports (pentest, CAIQ,
+  HECVAT) are available on request through the trust center.

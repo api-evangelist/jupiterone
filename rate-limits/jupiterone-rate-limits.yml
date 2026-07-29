@@ -1,0 +1,25 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.jupiterone.io/api/rate-limiting
+docs: https://docs.jupiterone.io/api/rate-limiting
+signal:
+  status_code: 429
+  description: A 429 Too Many Requests is returned when the account rate limit is exceeded.
+scope: per-account, tier-based
+rate_limits:
+- tier: Free
+  limit_count: 10
+  window: minute
+  burst: false
+- tier: Freemium
+  limit_count: 30
+  window: minute
+  burst: false
+- tier: Enterprise
+  limit_count: 60
+  window: minute
+  burst: true
+  notes: Enterprise accounts are limited to 30-60 requests/min with burst allowance.
+notes: >-
+  Rate limiting is enforced per account based on subscription tier. Exceeding the
+  limit returns HTTP 429; clients should back off and retry.

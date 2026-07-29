@@ -1,0 +1,23 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.jupiterone.io/api/nodejs-client
+cli:
+  name: j1
+  distributed_via: "@jupiterone/jupiterone-client-nodejs (npm)"
+  install:
+  - npm install -g @jupiterone/jupiterone-client-nodejs
+  binary: j1
+  package: packages/jupiterone-packages.yml
+  auth:
+    env:
+    - J1_API_TOKEN
+    - J1_ACCOUNT
+    notes: Uses a JupiterOne API token (Bearer) plus the account id, matching the API auth headers.
+  purpose: >-
+    Command-line utility bundled with the Node.js client for uploading your own
+    entities and relationships to a JupiterOne workspace and running J1QL queries.
+  capabilities:
+  - Bulk upload of custom entities and relationships (CSV / JSON) into a scope
+  - Run J1QL queries from the terminal
+  - Manage integration data via sync jobs
+  docs: https://docs.jupiterone.io/api/nodejs-client

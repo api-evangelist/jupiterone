@@ -1,0 +1,29 @@
+generated: '2026-07-19'
+method: searched
+source: probe of /.well-known/* across JupiterOne hosts
+hosts:
+- host: https://api.us.jupiterone.io
+  documents:
+  - {path: /.well-known/security.txt, status: 403}
+  - {path: /.well-known/openid-configuration, status: 403}
+  - {path: /.well-known/oauth-authorization-server, status: 403}
+  - {path: /.well-known/api-catalog, status: 403}
+  - {path: /.well-known/ai-plugin.json, status: 403}
+- host: https://graphql.us.jupiterone.io
+  documents:
+  - {path: /.well-known/security.txt, status: 401}
+  - {path: /.well-known/openid-configuration, status: 401}
+  - {path: /.well-known/oauth-authorization-server, status: 401}
+  - {path: /.well-known/api-catalog, status: 401}
+  - {path: /.well-known/ai-plugin.json, status: 401}
+- host: https://www.jupiterone.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+- host: https://docs.jupiterone.io
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+notes: >-
+  No /.well-known/ discovery document returned 200. The API hosts gate every path
+  behind auth (401/403) and publish no OIDC/OAuth-AS/api-catalog/ai-plugin document;
+  the marketing and docs hosts return 404. No security.txt is published. Recorded
+  as valid empty result; no canonical WellKnown catalog pointer is emitted.

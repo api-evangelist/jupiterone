@@ -1,0 +1,44 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.jupiterone.io/reference
+packages:
+- language: javascript
+  registry: npm
+  name: "@jupiterone/jupiterone-client-nodejs"
+  url: https://www.npmjs.com/package/@jupiterone/jupiterone-client-nodejs
+  install: npm install @jupiterone/jupiterone-client-nodejs
+  version: 2.1.2
+  official: true
+  notes: Node.js client wrapper for the JupiterOne public API; also ships the j1 CLI.
+  repo: https://github.com/JupiterOne/jupiterone-client-nodejs
+- language: python
+  registry: pypi
+  name: jupiterone
+  url: https://pypi.org/project/jupiterone/
+  install: pip install jupiterone
+  official: true
+  notes: Python client for the JupiterOne API.
+  repo: https://github.com/JupiterOne/jupiterone-api-client-python
+- language: javascript
+  registry: npm
+  name: "@jupiterone/jupiterone-mcp"
+  url: https://www.npmjs.com/package/@jupiterone/jupiterone-mcp
+  install: npm install -g @jupiterone/jupiterone-mcp
+  version: 1.1.1
+  official: true
+  notes: Model Context Protocol server for JupiterOne account rules and rule details.
+- language: go
+  registry: github
+  name: github.com/JupiterOne/jupiterone-client-go
+  url: https://github.com/JupiterOne/jupiterone-client-go
+  install: go get github.com/JupiterOne/jupiterone-client-go
+  official: true
+  notes: Go client for JupiterOne.
+- language: hcl
+  registry: terraform
+  name: JupiterOne/jupiterone
+  url: https://registry.terraform.io/providers/JupiterOne/jupiterone/latest
+  install: 'terraform { required_providers { jupiterone = { source = "JupiterOne/jupiterone" } } }'
+  official: true
+  notes: Terraform provider for managing JupiterOne rules, questions, and dashboards as code.
+  repo: https://github.com/JupiterOne/terraform-provider-jupiterone

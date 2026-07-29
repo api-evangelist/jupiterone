@@ -1,0 +1,49 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.jupiterone.io/reference
+docs: https://docs.jupiterone.io/reference
+api_style: GraphQL (primary) with a REST surface for sync jobs
+authentication:
+  style: Bearer API key + JupiterOne-Account header
+  ref: authentication/jupiterone-authentication.yml
+pagination:
+  style: cursor
+  description: >-
+    J1QL and GraphQL queries return a cursor for paging through large result sets.
+    Callers pass the cursor back on the next request to fetch the following page.
+  params:
+  - cursor
+  response_fields:
+  - cursor
+idempotency:
+  supported: false
+  notes: >-
+    No idempotency-key header/parameter is documented. Sync jobs provide their own
+    reconciliation semantics (DIFF / PATCH / OVERRIDE / CROSS_SCOPE sync modes) rather
+    than request-level idempotency keys.
+rate_limiting:
+  signal: HTTP 429 on limit exceeded
+  tiered: true
+  ref: rate-limits/jupiterone-rate-limits.yml
+error_envelope:
+  graphql:
+    shape: Standard GraphQL errors[] array with message and extensions
+  rest:
+    shape: Sync jobs REST endpoints return structured error responses with validation detail
+  ref: null
+versioning:
+  scheme: unversioned-graphql
+  notes: >-
+    The GraphQL schema evolves additively; the platform ships dated release notes
+    rather than URI-path versions.
+  ref: lifecycle/jupiterone-lifecycle.yml
+sync_modes:
+- DIFF
+- PATCH
+- OVERRIDE
+- CROSS_SCOPE
+cross_links:
+  authentication: authentication/jupiterone-authentication.yml
+  rate_limits: rate-limits/jupiterone-rate-limits.yml
+  lifecycle: lifecycle/jupiterone-lifecycle.yml
+  webhooks: asyncapi/jupiterone-webhooks.yml
