@@ -6,20 +6,23 @@ server:
   name: jupiterone-mcp
   vendor: JupiterOne
   transport: stdio
-  package: "@jupiterone/jupiterone-mcp"
+  package: '@jupiterone/jupiterone-mcp'
   version: 1.1.1
   binary: jupiterone-mcp
   install: npm install -g @jupiterone/jupiterone-mcp
-  description: >-
-    Official Model Context Protocol server for JupiterOne. Exposes JupiterOne
-    account rules and rule details to MCP-compatible agents and clients.
+  description: Official Model Context Protocol server for JupiterOne. Exposes JupiterOne account rules
+    and rule details to MCP-compatible agents and clients.
   auth:
     env:
     - JUPITERONE_API_KEY
     - JUPITERONE_ACCOUNT_ID
     notes: Configured with a JupiterOne API token (Bearer) and account id, matching the API auth headers.
 capability_area: JupiterOne alert/account rules
-notes: >-
-  Scope per the published package description is account rules and rule details.
-  The JupiterOne GraphQL API (J1QL queries, entities/relationships, sync jobs)
-  is the broader surface; this MCP server focuses on the rules domain.
+notes: Scope per the published package description is account rules and rule details. The JupiterOne GraphQL
+  API (J1QL queries, entities/relationships, sync jobs) is the broader surface; this MCP server focuses
+  on the rules domain.
+deployment:
+  mode: local-stdio
+  verified: searched
+  checked: '2026-08-12'
+  source: catalog MCP census
